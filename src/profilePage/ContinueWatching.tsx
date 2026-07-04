@@ -21,11 +21,13 @@ const continueWatchingConfig = {
   ],
   stalker: [
     { title: "Skills", imgSrc: "https://picsum.photos/id/1026/300/200", link: "/skills" },
+    { title: "Education", imgSrc: "https://picsum.photos/id/1024/300/200", link: "/education" },
     { title: "Work Permit", imgSrc: "https://picsum.photos/id/1027/300/200", link: "/work-permit" },
     { title: "Contact Me", imgSrc: "https://picsum.photos/id/1029/300/200", link: "/contact-me" }
   ],
   adventurer: [
     { title: "Certifications", imgSrc: "https://picsum.photos/id/1028/300/200", link: "/certifications" },
+    { title: "Education", imgSrc: "https://picsum.photos/id/1024/300/200", link: "/education" },
     { title: "Work Permit", imgSrc: "https://picsum.photos/id/1026/300/200", link: "/work-permit" },
     { title: "Contact Me", imgSrc: "https://picsum.photos/id/1029/300/200", link: "/contact-me" }
   ]

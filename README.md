@@ -6,16 +6,17 @@ A Netflix-inspired developer portfolio built with **React + TypeScript**. Pick a
 
 ## ✨ What's inside
 
+- 🌐 **3D intro** — rotating wireframe sphere + particle field (react-three-fiber) with the Netflix "ta-dum" on enter
 - 🎭 **Audience profiles** — different landing rows for recruiters, developers, and casual visitors
 - 📄 **Local content, no CMS** — everything is in [`src/data/portfolioData.ts`](src/data/portfolioData.ts); edit one file to update the whole site
 - 🐙 **Live GitHub page** — fetches my latest public repos from the GitHub API at `/github`
-- 📅 **Experience timeline** — Deutsche Börse, Mphasis, and education on a vertical timeline
+- 💼 **Work & Education timelines** — separate pages for Deutsche Börse/Mphasis experience and Marburg/Osmania education
 - 🛂 **Work permit page** — visa status at a glance for recruiters in Germany
-- 📱 Fully responsive with the classic Netflix intro sound
+- 📱 Fully responsive, Vercel-ready (`vercel.json` handles SPA routing)
 
 ## 🛠️ Tech Stack
 
-React 18 · TypeScript · React Router 6 · react-icons · react-vertical-timeline-component · GitHub REST API
+React 19 · TypeScript 6 · React Router 7 · three.js + @react-three/fiber · react-icons · react-vertical-timeline-component · GitHub REST API
 
 ## 🚀 Getting started
 

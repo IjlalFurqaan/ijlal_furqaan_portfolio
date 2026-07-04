@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopPicksRow.css';
-import { FaPassport, FaCode, FaBriefcase, FaCertificate, FaProjectDiagram, FaEnvelope, FaGithub } from 'react-icons/fa';
+import { FaPassport, FaCode, FaBriefcase, FaCertificate, FaProjectDiagram, FaEnvelope, FaGithub, FaGraduationCap } from 'react-icons/fa';
 
 type ProfileType = 'recruiter' | 'developer' | 'stalker' | 'adventurer';
 
@@ -13,6 +13,7 @@ const topPicksConfig = {
   recruiter: [
     { title: "Work Permit", imgSrc: "https://picsum.photos/seed/workpermit/250/200", icon: <FaPassport />, route: "/work-permit" },
     { title: "Experience", imgSrc: "https://picsum.photos/seed/workexperience/250/200", icon: <FaBriefcase />, route: "/work-experience" },
+    { title: "Education", imgSrc: "https://picsum.photos/seed/education/250/200", icon: <FaGraduationCap />, route: "/education" },
     { title: "Skills", imgSrc: "https://picsum.photos/seed/skills/250/200", icon: <FaCode />, route: "/skills" },
     { title: "Projects", imgSrc: "https://picsum.photos/seed/projects/250/200", icon: <FaProjectDiagram />, route: "/projects" },
     { title: "Certifications", imgSrc: "https://picsum.photos/seed/certifications/250/200", icon: <FaCertificate />, route: "/certifications" },
@@ -23,6 +24,7 @@ const topPicksConfig = {
     { title: "Projects", imgSrc: "https://picsum.photos/seed/development/250/200", route: "/projects", icon: <FaProjectDiagram /> },
     { title: "GitHub", imgSrc: "https://picsum.photos/seed/github/250/200", route: "/github", icon: <FaGithub /> },
     { title: "Experience", imgSrc: "https://picsum.photos/seed/work/250/200", route: "/work-experience", icon: <FaBriefcase /> },
+    { title: "Education", imgSrc: "https://picsum.photos/seed/study/250/200", route: "/education", icon: <FaGraduationCap /> },
     { title: "Certifications", imgSrc: "https://picsum.photos/seed/badge/250/200", route: "/certifications", icon: <FaCertificate /> },
     { title: "Contact Me", imgSrc: "https://picsum.photos/seed/connect/250/200", route: "/contact-me", icon: <FaEnvelope /> }
   ],
