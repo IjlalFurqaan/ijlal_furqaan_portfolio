@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.intro-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  cursor: default;
+  /* Near-black base with a soft red glow pooled at the center */
+  background:
+    radial-gradient(circle at 50% 45%, rgba(229, 9, 20, 0.16) 0%, rgba(40, 5, 8, 0.55) 38%, rgba(8, 2, 3, 0.95) 72%, #030102 100%),
+    #030102;
+}
+
+.intro-canvas {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* ── Overlay ─────────────────────────────────────────────── */
+
+.intro-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 36px);
+  text-align: center;
+  padding: 0 16px;
+  pointer-events: none; /* let only the button take clicks */
+}
+
+.intro-name {
+  margin: 0;
+  font-family: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  font-weight: 400; /* Anton is a single-weight display face */
+  text-transform: uppercase;
+  color: #e50914;
+  font-size: clamp(2.6rem, 9vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: 0.05em;
+  text-shadow:
+    0 0 24px rgba(229, 9, 20, 0.45),
+    0 0 90px rgba(229, 9, 20, 0.25);
+  animation: nameGlow 3.2s ease-in-out infinite alternate;
+  user-select: none;
+}
+
+@keyframes nameGlow {
+  from {
+    text-shadow:
+      0 0 24px rgba(229, 9, 20, 0.35),
+      0 0 90px rgba(229, 9, 20, 0.18);
+  }
+  to {
+    text-shadow:
+      0 0 32px rgba(229, 9, 20, 0.6),
+      0 0 110px rgba(229, 9, 20, 0.32);
+  }
+}
+
+/* ── START button ────────────────────────────────────────── */
+
+.start-button {
+  pointer-events: auto;
+  background: transparent;
+  border: 2px solid #e50914;
+  border-radius: 999px;
+  color: #e50914;
+  font-family: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em; /* re-center: letter-spacing adds a trailing gap */
+  padding: 0.85em 3.6em;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+.start-button:hover,
+.start-button:focus-visible {
+  background: #e50914;
+  color: #fff;
+  box-shadow: 0 0 28px rgba(229, 9, 20, 0.55);
+  outline: none;
+}
+
+.start-button:active {
+  transform: scale(0.96);
+}
+
+.start-button:disabled {
+  cursor: default;
+}
+
+.enter-hint {
+  margin: 0;
+  color: #6f6f6f;
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.45em;
+  text-indent: 0.45em;
+  user-select: none;
+}
+
+/* ── Exit transition (after clicking START) ──────────────── */
+
+.intro-container.exiting .intro-overlay {
+  animation: overlayExit 2.4s ease-in forwards;
+}
+
+.intro-container.exiting .intro-name {
+  animation: nameExit 2.4s cubic-bezier(0.6, 0, 0.8, 1) forwards;
+}
+
+@keyframes overlayExit {
+  0% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes nameExit {
+  0% { transform: scale(1); }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.intro-container.exiting {
+  animation: containerFade 2.4s ease forwards;
+}
+
+@keyframes containerFade {
+  0% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .intro-name {
+    animation: none;
+  }
+}

@@ -1,0 +1,155 @@
+.github-container {
+  padding: 100px 40px 60px;
+  min-height: 100vh;
+  background-color: #141414;
+  color: #fff;
+}
+
+.github-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.github-intro {
+  color: #aaa;
+  margin-bottom: 32px;
+}
+
+.github-intro a {
+  color: #e50914;
+  text-decoration: none;
+}
+
+.github-intro a:hover {
+  text-decoration: underline;
+}
+
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.repo-card {
+  display: flex;
+  flex-direction: column;
+  background: #1f1f1f;
+  border: 1px solid #303030;
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: repoFadeIn 0.5s ease forwards;
+  animation-delay: var(--delay, 0s);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  border-color: #e50914;
+  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.25);
+}
+
+@keyframes repoFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.repo-name {
+  color: #e50914;
+  font-size: 1.15rem;
+  margin: 0 0 8px;
+  word-break: break-word;
+}
+
+.repo-description {
+  color: #ccc;
+  font-size: 0.9rem;
+  flex-grow: 1;
+  margin: 0 0 14px;
+}
+
+.repo-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.repo-topic {
+  background: rgba(229, 9, 20, 0.15);
+  color: #ff6b6b;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #999;
+  font-size: 0.82rem;
+}
+
+.repo-language {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.repo-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.github-status {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: #141414;
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.github-big-icon {
+  font-size: 4rem;
+  color: #e50914;
+}
+
+.github-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e50914;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.github-profile-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .github-container {
+    padding: 90px 16px 40px;
+  }
+}
