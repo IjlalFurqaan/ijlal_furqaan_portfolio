@@ -26,15 +26,15 @@ const WireframeSphere: React.FC<{ exiting: boolean }> = ({ exiting }) => {
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[0, 0, -0.8]}>
       <mesh>
-        <icosahedronGeometry args={[2.2, 2]} />
-        <meshBasicMaterial color={SPHERE_COLOR} wireframe transparent opacity={0.55} />
+        <icosahedronGeometry args={[1.7, 2]} />
+        <meshBasicMaterial color={SPHERE_COLOR} wireframe transparent opacity={0.32} />
       </mesh>
       {/* Inner shell at a lower subdivision gives the layered geodesic look */}
       <mesh rotation={[0.4, 0.8, 0]}>
-        <icosahedronGeometry args={[1.45, 1]} />
-        <meshBasicMaterial color={SPHERE_COLOR} wireframe transparent opacity={0.22} />
+        <icosahedronGeometry args={[1.1, 1]} />
+        <meshBasicMaterial color={SPHERE_COLOR} wireframe transparent opacity={0.14} />
       </mesh>
     </group>
   );
@@ -112,7 +112,7 @@ const NetflixTitle: React.FC = () => {
       <div className="intro-overlay">
         <h1 className="intro-name">Ijlal Furqaan</h1>
         <button className="start-button" onClick={handleStart} disabled={isExiting}>
-          Start
+          Enter
         </button>
         <p className="enter-hint">Click to enter</p>
       </div>

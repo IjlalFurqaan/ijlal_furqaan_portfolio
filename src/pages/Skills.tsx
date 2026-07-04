@@ -6,7 +6,7 @@ import { Skill } from '../types';
 import { FaReact, FaNodeJs, FaAws, FaDocker, FaJava, FaPython, FaAngular, FaDatabase, FaRobot, FaBrain, FaGithub } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiPostgresql, SiMysql, SiMongodb, SiGooglecloud, SiSpringboot, SiGraphql, SiFlask, SiRedux, SiTerraform, SiLinux, SiTensorflow, SiPytorch, SiFirebase, SiExpress } from 'react-icons/si';
 
-const iconMap: { [key: string]: JSX.Element } = {
+const iconMap: { [key: string]: React.JSX.Element } = {
   FaPython: <FaPython />,
   SiTypescript: <SiTypescript />,
   SiJavascript: <SiJavascript />,

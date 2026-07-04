@@ -1,10 +1,10 @@
 import React from 'react';
 import './Projects.css';
 import { FaReact, FaNodeJs, FaAws, FaDatabase, FaDocker, FaGithub, FaGoogle, FaJava, FaPython, FaRobot } from 'react-icons/fa';
-import { SiPostgresql, SiMongodb, SiHtml5, SiCss3, SiFirebase, SiTerraform, SiTypescript, SiGraphql, SiFlask, SiOpencv, SiGithubactions } from 'react-icons/si';
+import { SiPostgresql, SiMongodb, SiHtml5, SiCss, SiFirebase, SiTerraform, SiTypescript, SiGraphql, SiFlask, SiOpencv, SiGithubactions } from 'react-icons/si';
 import { projects } from '../data/portfolioData';
 
-const techIcons: { [key: string]: JSX.Element } = {
+const techIcons: { [key: string]: React.JSX.Element } = {
   'React': <FaReact />,
   'ReactJS': <FaReact />,
   'TypeScript': <SiTypescript />,
@@ -26,7 +26,7 @@ const techIcons: { [key: string]: JSX.Element } = {
   'PostgreSQL': <SiPostgresql />,
   'MongoDB': <SiMongodb />,
   'HTML5': <SiHtml5 />,
-  'CSS3': <SiCss3 />,
+  'CSS3': <SiCss />,
   'OpenCV': <SiOpencv />,
   'YOLO': <SiOpencv />,
   'RAG': <FaRobot />,
