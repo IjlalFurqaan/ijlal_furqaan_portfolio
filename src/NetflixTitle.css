@@ -5,15 +5,36 @@
   inset: 0;
   overflow: hidden;
   cursor: default;
-  /* Near-black base with a soft red glow pooled at the center */
-  background:
-    radial-gradient(circle at 50% 45%, rgba(229, 9, 20, 0.16) 0%, rgba(40, 5, 8, 0.55) 38%, rgba(8, 2, 3, 0.95) 72%, #030102 100%),
-    #030102;
+  background: #050505;
 }
 
+/* The 2D canvas painting the falling light streaks + particles */
 .intro-canvas {
-  position: absolute !important;
+  position: absolute;
   inset: 0;
+  z-index: 0;
+}
+
+/* Cinematic vignette over the streaks: darkened corners, breathing room center */
+.intro-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 52%, rgba(5, 5, 5, 0.42) 80%, rgba(5, 5, 5, 0.75) 100%),
+    linear-gradient(to bottom, rgba(5, 5, 5, 0.4) 0%, transparent 16%, transparent 84%, rgba(5, 5, 5, 0.5) 100%);
+}
+
+/* Static film grain: masks gradient banding and adds cinematic texture */
+.intro-vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
 }
 
 /* ── Overlay ─────────────────────────────────────────────── */
@@ -32,17 +53,26 @@
   pointer-events: none; /* let only the button take clicks */
 }
 
-/* Dark radial glow behind the text so it pops off the wireframe */
+/* Volumetric red glow pooled behind the title, breathing slowly */
 .intro-overlay::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(92vw, 980px);
-  height: min(70vh, 520px);
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 72%);
+  width: min(95vw, 1100px);
+  height: min(72vh, 560px);
+  background:
+    radial-gradient(ellipse 55% 42% at center, rgba(229, 9, 20, 0.2) 0%, rgba(106, 0, 0, 0.16) 40%, transparent 70%),
+    radial-gradient(ellipse 75% 60% at center, rgba(106, 0, 0, 0.12) 0%, transparent 65%);
+  filter: blur(6px);
+  animation: glowBreathe 6s ease-in-out infinite alternate;
   pointer-events: none;
+}
+
+@keyframes glowBreathe {
+  from { opacity: 0.75; transform: translate(-50%, -50%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
 }
 
 .intro-overlay > * {
@@ -78,10 +108,12 @@
   }
 }
 
-/* ── START button ────────────────────────────────────────── */
+/* ── ENTER button ────────────────────────────────────────── */
 
 .start-button {
   pointer-events: auto;
+  position: relative;
+  overflow: hidden; /* clip the shine sweep */
   background: rgba(8, 8, 8, 0.65);
   border: 2px solid #e50914;
   border-radius: 999px;
@@ -93,20 +125,59 @@
   text-indent: 0.35em; /* re-center: letter-spacing adds a trailing gap */
   padding: 0.85em 3.6em;
   cursor: pointer;
-  box-shadow: 0 0 16px rgba(229, 9, 20, 0.25);
-  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+  /* Soft red outer glow */
+  box-shadow:
+    0 0 18px rgba(229, 9, 20, 0.35),
+    0 0 48px rgba(229, 9, 20, 0.15),
+    inset 0 0 12px rgba(229, 9, 20, 0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.start-button-label {
+  position: relative;
+  z-index: 1;
+}
+
+/* Shine sweeping across the button every few seconds */
+.start-button::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 45%;
+  height: 140%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 220, 220, 0.28) 50%,
+    rgba(255, 255, 255, 0.05) 65%,
+    transparent 100%
+  );
+  transform: translateX(-140%) skewX(-18deg);
+  animation: buttonShine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes buttonShine {
+  0% { transform: translateX(-140%) skewX(-18deg); }
+  32% { transform: translateX(340%) skewX(-18deg); }
+  100% { transform: translateX(340%) skewX(-18deg); }
 }
 
 .start-button:hover,
 .start-button:focus-visible {
-  background: #e50914;
-  color: #fff;
-  box-shadow: 0 0 28px rgba(229, 9, 20, 0.55);
+  background: rgba(229, 9, 20, 0.92);
+  transform: scale(1.06);
+  box-shadow:
+    0 0 26px rgba(229, 9, 20, 0.6),
+    0 0 70px rgba(229, 9, 20, 0.3),
+    inset 0 0 16px rgba(255, 255, 255, 0.08);
   outline: none;
 }
 
 .start-button:active {
-  transform: scale(0.96);
+  transform: scale(0.98);
 }
 
 .start-button:disabled {
@@ -123,7 +194,7 @@
   user-select: none;
 }
 
-/* ── Exit transition (after clicking START) ──────────────── */
+/* ── Exit transition (after clicking ENTER) ──────────────── */
 
 .intro-container.exiting .intro-overlay {
   animation: overlayExit 2.4s ease-in forwards;
@@ -154,9 +225,16 @@
   100% { opacity: 0; }
 }
 
-/* Respect users who prefer less motion */
+/* Respect users who prefer less motion (canvas also renders a static frame) */
 @media (prefers-reduced-motion: reduce) {
-  .intro-name {
+  .intro-name,
+  .intro-overlay::before,
+  .start-button::after {
     animation: none;
+  }
+
+  .start-button:hover,
+  .start-button:focus-visible {
+    transform: none;
   }
 }
