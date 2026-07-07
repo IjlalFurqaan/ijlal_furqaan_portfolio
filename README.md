@@ -2,7 +2,7 @@
 
 A Netflix-inspired developer portfolio built with **React + TypeScript**. Pick a profile (recruiter, developer, stalker, adventurer) and browse my experience, skills, projects, certifications, and live GitHub repos — Netflix style.
 
-> Forked from [Sumanth Samala's netflix_portfolio](https://github.com/sumanthsamala/netflix_portfolio) — thanks for the great concept! This fork removes the DatoCMS dependency entirely: all content lives in one local typed data file.
+
 
 ## ✨ What's inside
 
