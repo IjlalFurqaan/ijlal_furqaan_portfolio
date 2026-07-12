@@ -1,104 +1,126 @@
-/* Certifications.css */
-
 .certifications-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 10rem 1rem;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(0, 0, 1, 0.9) 10%, rgba(20, 20, 20, 0.9) 100%);
-  background-size: 200% 200%;
+  padding: 110px 40px 80px;
   color: #fff;
-  animation: backgroundShift 10s ease-in-out infinite;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* ── Page header ─────────────────────────────────────────── */
+
+.certifications-header {
+  text-align: center;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: certFadeUp 0.7s ease forwards;
 }
 
 .certifications-title {
-  font-size: 2.5rem;
-  color: #e50914; /* Netflix red */
-  font-weight: bold;
-  margin-bottom: 2rem;
-  animation: slideDown 0.8s ease-in-out forwards;
-  transform: translateY(-20px);
-  opacity: 0;
-  text-transform: uppercase;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 10px;
 }
+
+.certifications-subtitle {
+  font-size: 1rem;
+  color: #9a9a9a;
+  margin: 0;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1000px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
 }
 
 .certification-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
-  text-decoration: none;
-  color: inherit;
+  --accent: #e50914;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  gap: 16px;
+  background: linear-gradient(145deg, #1b1b1b, #121212);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 20px;
   opacity: 0;
-  transform: translateY(50px) rotate(-2deg) scale(0.95); /* Subtle rotation and scale */
-  animation: cardFadeIn 0.6s forwards ease-in-out;
-  animation-delay: var(--delay); /* Staggered animation for grid layout */
+  transform: translateY(16px);
+  animation: certFadeUp 0.5s forwards ease-out;
+  animation-delay: var(--delay);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .certification-card:hover {
-  transform: scale(1.08) rotate(0deg); /* Zoom and straight hover */
-  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4); /* Netflix red shadow */
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+
+.certification-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: transform 0.25s ease;
+}
+
+.certification-card:hover .certification-icon {
+  transform: scale(1.12);
 }
 
 .certification-content {
   text-align: left;
-  display: flex;
-  flex-direction: column;
+  min-width: 0;
 }
 
-.certification-icon {
-  font-size: 2rem;
-  color: #4a90e2;
-  margin-bottom: 0.5rem;
+.certification-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px;
 }
 
-.certification-link {
-  font-size: 1.5rem;
-  color: #e50914; /* Netflix red */
-  transition: transform 0.2s ease;
-}
-
-.certification-card:hover .certification-link {
-  transform: scale(1.2);
+.certification-content p {
+  font-size: 0.85rem;
+  color: #9a9a9a;
+  margin: 0;
 }
 
 .issued-date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: #777;
+  margin-top: 6px;
+  display: block;
 }
 
-/* Background animation */
-@keyframes backgroundShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ── Animations ──────────────────────────────────────────── */
+
+@keyframes certFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Slide-down title animation */
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ── Responsive ──────────────────────────────────────────── */
 
-/* Staggered card fade-in with rotation */
-@keyframes cardFadeIn {
-  from { opacity: 0; transform: translateY(50px) rotate(-2deg) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+@media (max-width: 600px) {
+  .certifications-container {
+    padding: 96px 18px 60px;
+  }
+
+  .certifications-title {
+    font-size: 1.8rem;
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
 }

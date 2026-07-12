@@ -12,10 +12,13 @@ import ContactMe from './pages/ContactMe';
 import Certifications from './pages/Certifications';
 import GitHub from './pages/GitHub';
 import Layout from './Layout';
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/" element={<NetflixTitle />} />
       <Route path="/browse" element={<Browse />} />
       <Route path="/profile/:profileName" element={<Layout><ProfilePage /></Layout>} />
@@ -27,7 +30,8 @@ const App: React.FC = () => {
       <Route path="/certifications" element={<Layout><Certifications /></Layout>} />
       <Route path="/github" element={<Layout><GitHub /></Layout>} />
       <Route path="/contact-me" element={<Layout><ContactMe /></Layout>} />
-    </Routes>
+      </Routes>
+    </>
   );
 };
 

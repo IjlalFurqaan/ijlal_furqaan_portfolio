@@ -36,6 +36,37 @@ const iconMap: { [key: string]: React.JSX.Element } = {
   SiFirebase: <SiFirebase />,
 };
 
+// Brand accent per icon — drives the icon tint and the card's hover glow.
+const brandColors: { [key: string]: string } = {
+  FaPython: '#4b8bbe',
+  SiTypescript: '#3178c6',
+  SiJavascript: '#f7df1e',
+  FaJava: '#e76f00',
+  FaDatabase: '#9d7cd8',
+  FaRobot: '#ff6b6b',
+  FaBrain: '#ff8fa3',
+  SiGooglecloud: '#4285f4',
+  SiTensorflow: '#ff8f00',
+  SiPytorch: '#ee4c2c',
+  FaReact: '#61dafb',
+  FaAngular: '#dd0031',
+  SiRedux: '#764abc',
+  FaNodeJs: '#83cd29',
+  SiExpress: '#cfcfcf',
+  SiGraphql: '#e535ab',
+  SiSpringboot: '#6db33f',
+  SiFlask: '#dddddd',
+  FaAws: '#ff9900',
+  SiTerraform: '#7b42bc',
+  FaDocker: '#2496ed',
+  FaGithub: '#c9d1d9',
+  SiLinux: '#f0c674',
+  SiPostgresql: '#699eca',
+  SiMongodb: '#4db33d',
+  SiMysql: '#00a1c9',
+  SiFirebase: '#ffca28',
+};
+
 const Skills: React.FC = () => {
   const skillsByCategory = skills.reduce((acc: { [key: string]: Skill[] }, skill) => {
     if (!acc[skill.category]) acc[skill.category] = [];
@@ -45,25 +76,40 @@ const Skills: React.FC = () => {
 
   return (
     <div className="skills-container">
+      <header className="skills-header">
+        <h2 className="skills-title">Skills &amp; Technologies</h2>
+        <p className="skills-subtitle">The stack I build with, from AI pipelines to production frontends.</p>
+      </header>
       {Object.keys(skillsByCategory).map((category, index) => (
-        <div key={index} className="skill-category">
-          <h3 className="category-title">{category}</h3>
+        <section
+          key={category}
+          className="skill-category"
+          style={{ '--cat-delay': `${index * 0.12}s` } as React.CSSProperties}
+        >
+          <div className="category-header">
+            <h3 className="category-title">{category}</h3>
+            <span className="category-count">{skillsByCategory[category].length}</span>
+            <span className="category-line" />
+          </div>
           <div className="skills-grid">
             {skillsByCategory[category].map((skill, idx) => (
-              <div key={idx} className="skill-card">
-                <div className="icon">{iconMap[skill.icon] || <FaReact />}</div>
-                <h3 className="skill-name">
-                  {skill.name.split('').map((letter, i) => (
-                    <span key={i} className="letter" style={{ animationDelay: `${i * 0.05}s` }}>
-                      {letter}
-                    </span>
-                  ))}
-                </h3>
-                <p className="skill-description">{skill.description}</p>
+              <div
+                key={skill.name}
+                className="skill-card"
+                style={{
+                  '--delay': `${index * 0.12 + idx * 0.06}s`,
+                  '--accent': brandColors[skill.icon] || '#e50914',
+                } as React.CSSProperties}
+              >
+                <div className="skill-icon">{iconMap[skill.icon] || <FaReact />}</div>
+                <div className="skill-info">
+                  <h4 className="skill-name">{skill.name}</h4>
+                  <p className="skill-description">{skill.description}</p>
+                </div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       ))}
     </div>
   );

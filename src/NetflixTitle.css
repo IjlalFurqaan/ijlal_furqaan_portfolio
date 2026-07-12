@@ -195,33 +195,57 @@
 }
 
 /* ── Exit transition (after clicking ENTER) ──────────────── */
+/* Netflix-ident feel: button and hint drop away instantly, then the name
+   accelerates THROUGH the camera while the streaks warp, ending on a cut. */
 
-.intro-container.exiting .intro-overlay {
-  animation: overlayExit 2.4s ease-in forwards;
+.intro-container.exiting .start-button,
+.intro-container.exiting .enter-hint {
+  animation: elementsOut 0.3s ease forwards;
+}
+
+.intro-container.exiting .intro-overlay::before {
+  animation: elementsOut 0.6s ease forwards;
+}
+
+@keyframes elementsOut {
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
 }
 
 .intro-container.exiting .intro-name {
-  animation: nameExit 2.4s cubic-bezier(0.6, 0, 0.8, 1) forwards;
+  /* Accelerating ease: slow lift-off, violent fly-through at the end */
+  animation: nameZoom 1.6s cubic-bezier(0.7, 0, 0.84, 0.4) forwards;
 }
 
-@keyframes overlayExit {
-  0% { opacity: 1; }
-  60% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes nameExit {
-  0% { transform: scale(1); }
-  100% { transform: scale(2.4); opacity: 0; }
+@keyframes nameZoom {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  88% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(16);
+    opacity: 0;
+    filter: blur(10px);
+  }
 }
 
 .intro-container.exiting {
-  animation: containerFade 2.4s ease forwards;
+  animation: containerFade 1.6s ease-in forwards;
 }
 
 @keyframes containerFade {
   0% { opacity: 1; }
-  75% { opacity: 1; }
+  72% { opacity: 1; }
   100% { opacity: 0; }
 }
 
@@ -237,4 +261,13 @@
   .start-button:focus-visible {
     transform: none;
   }
+
+  /* Exit becomes a plain crossfade: no zoom, no blur */
+  .intro-container.exiting .intro-name {
+    animation: reducedExit 1.6s ease forwards;
+  }
+}
+
+@keyframes reducedExit {
+  to { opacity: 0; }
 }

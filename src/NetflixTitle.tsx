@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import netflixSound from './netflix-sound.mp3';
 import './NetflixTitle.css';
 
-const EXIT_DURATION_MS = 2400;
+const EXIT_DURATION_MS = 1600;
 
 const PRIMARY_RED = { r: 229, g: 9, b: 20 }; // #E50914
 const DARK_RED = { r: 106, g: 0, b: 0 }; // #6A0000

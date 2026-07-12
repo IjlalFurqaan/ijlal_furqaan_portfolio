@@ -68,8 +68,8 @@ const GitHub: React.FC = () => {
         Live from{' '}
         <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noopener noreferrer">
           github.com/{githubUsername}
-        </a>{' '}
-        — my most recently updated public repositories.
+        </a>
+        : my most recently updated public repositories.
       </p>
       <div className="repos-grid">
         {repos.map((repo, index) => (

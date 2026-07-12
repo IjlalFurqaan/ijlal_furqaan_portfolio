@@ -1,89 +1,160 @@
 .projects-container {
-  padding: 120px 20px;
-  background-color: #141414;
+  padding: 110px 40px 80px;
   color: #fff;
+  max-width: 1200px;
+  margin: auto;
 }
+
+/* ── Page header ─────────────────────────────────────────── */
+
+.projects-header {
+  text-align: center;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeSlideUp 0.7s ease forwards;
+}
+
+.projects-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 10px;
+}
+
+.projects-subtitle {
+  font-size: 1rem;
+  color: #9a9a9a;
+  margin: 0;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
 }
 
 .project-card {
-  background: #1e1e1e;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, #1b1b1b, #121212);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(160, 16, 16, 0.6); /* Base shadow */
   opacity: 0;
-  animation: fadeInUp 0.5s forwards ease-in-out;
+  transform: translateY(18px);
+  animation: fadeSlideUp 0.5s forwards ease-out;
   animation-delay: var(--delay);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
 .project-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(244, 0, 13, 0.6); /* Netflix shadow */
-  cursor: pointer;
+  transform: translateY(-6px);
+  border-color: rgba(229, 9, 20, 0.65);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55), 0 0 24px rgba(229, 9, 20, 0.12);
+}
+
+.project-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Netflix-style gradient scrim so the image melts into the card */
+.project-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(18, 18, 18, 0.55) 82%, #141414 100%);
+  pointer-events: none;
 }
 
 .project-image {
   width: 100%;
-  height: 200px;
+  height: 185px;
   object-fit: cover;
-  border-bottom: 2px solid #e50914;
-  transition: transform 0.3s ease;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 .project-details {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 20px 20px;
 }
 
 .project-details h3 {
-  font-size: 1.2rem;
-  color: #e74e56;
-  margin-bottom: 10px;
-  color: #e50914;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
 }
 
 .project-details p {
-  font-size: 0.8rem;
-  margin-bottom: 15px;
-  line-height: 1.2rem;
+  font-size: 0.87rem;
+  color: #a8a8a8;
+  line-height: 1.5;
+  margin: 0 0 16px;
 }
 
 .tech-used {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: auto; /* pin badges to the card bottom */
 }
 
 .tech-badge {
   display: inline-flex;
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 12px;
-  background: #2c2c2c;
-  color: #fff;
-  font-size: 0.8rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #d6d6d6;
+  font-size: 0.74rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .tech-badge:hover {
-  transform: scale(1.1);
-  background-color: #e50914;
+  transform: translateY(-2px);
+  background-color: rgba(229, 9, 20, 0.85);
+  border-color: rgba(229, 9, 20, 0.9);
   color: #fff;
-  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.6); /* Netflix shadow */
 }
 
 .tech-badge svg {
-  margin-right: 5px;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .projects-container {
+    padding: 96px 18px 60px;
+  }
+
+  .projects-title {
+    font-size: 1.8rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }

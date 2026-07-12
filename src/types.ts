@@ -35,7 +35,6 @@ export interface Certification {
   title: string;
   issuer: string;
   issuedDate: string;
-  link: string;
   iconName: string;
 }
 

@@ -6,7 +6,7 @@ const WorkPermit: React.FC = () => {
   return (
     <div className="work-permit-container">
       <div className="work-permit-card">
-        <h2 className="work-permit-headline">🛂 Work Permit — {workPermit.location}</h2>
+        <h2 className="work-permit-headline">🛂 Work Permit · {workPermit.location}</h2>
         <p className="work-permit-summary">
           <strong>{workPermit.visaStatus}</strong>
         </p>
