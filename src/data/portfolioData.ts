@@ -213,6 +213,8 @@ export const skills: Skill[] = [
   { name: 'TypeScript', category: 'Languages', icon: 'SiTypescript', description: 'Type-safe frontends and Node.js services in production.' },
   { name: 'JavaScript', category: 'Languages', icon: 'SiJavascript', description: 'Full-stack development across React and Node.js.' },
   { name: 'Java', category: 'Languages', icon: 'FaJava', description: 'Enterprise backends with Spring Boot.' },
+  { name: 'C++', category: 'Languages', icon: 'SiCplusplus', description: 'Systems programming: dependency resolvers, in-memory data stores, and performance-critical engines.' },
+  { name: 'C', category: 'Languages', icon: 'SiC', description: 'Low-level programming for performance-critical and embedded-style components.' },
   { name: 'SQL', category: 'Languages', icon: 'FaDatabase', description: 'Query design and optimization across relational databases.' },
 
   // AI & ML
